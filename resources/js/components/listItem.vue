@@ -25,7 +25,6 @@ export default {
                 completed: this.item.completed
             }).then(response => {
                 if(response.status >= 200 && response.status < 300) {
-                    alert('Item update succesfully')
                     this.$emit('reloadTodos')
                 }       
             })
@@ -34,7 +33,6 @@ export default {
         removeTodo() {
             axios.get('api/todo/delete/' +this.item.id).then(response => {
                 if(response.status >= 200 && response.status < 300) {
-                    alert('Item deleted succesfully')
                     this.$emit('reloadTodos')
                 } 
             })

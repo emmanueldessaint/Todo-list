@@ -11963,6 +11963,8 @@ __webpack_require__.r(__webpack_exports__);
           if (response.status >= 200 && response.status < 300) {
             _this.item.name = null;
           }
+
+          _this.$emit('reloadTodos');
         });
       }
     }
@@ -12010,8 +12012,6 @@ __webpack_require__.r(__webpack_exports__);
         completed: this.item.completed
       }).then(function (response) {
         if (response.status >= 200 && response.status < 300) {
-          alert('Item update succesfully');
-
           _this.$emit('reloadTodos');
         }
       });
@@ -12021,8 +12021,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/todo/delete/' + this.item.id).then(function (response) {
         if (response.status >= 200 && response.status < 300) {
-          alert('Item deleted succesfully');
-
           _this2.$emit('reloadTodos');
         }
       });
@@ -12044,6 +12042,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _listItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listItem */ "./resources/js/components/listItem.vue");
+/* harmony import */ var _addItemForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addItemForm */ "./resources/js/components/addItemForm.vue");
+//
+//
 //
 //
 //
@@ -12057,9 +12058,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    listItem: _listItem__WEBPACK_IMPORTED_MODULE_0__.default
+    listItem: _listItem__WEBPACK_IMPORTED_MODULE_0__.default,
+    addItemForm: _addItemForm__WEBPACK_IMPORTED_MODULE_1__.default
   },
   data: function data() {
     return {
@@ -48508,12 +48511,7 @@ var render = function() {
       [_vm._v("Todo List")]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "todoListContainer" },
-      [_c("add-item-form"), _vm._v(" "), _c("list-view")],
-      1
-    )
+    _c("div", { staticClass: "todoListContainer" }, [_c("list-view")], 1)
   ])
 }
 var staticRenderFns = []
@@ -48550,7 +48548,7 @@ var render = function() {
         }
       ],
       staticClass: "input",
-      attrs: { type: "text", placeholder: "Add Todo" },
+      attrs: { type: "text", placeholder: "Ajouter une tache" },
       domProps: { value: _vm.item.name },
       on: {
         input: function($event) {
@@ -48700,25 +48698,35 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.items, function(item, index) {
-      return _c(
-        "div",
-        { key: index },
-        [
-          _c("list-item", {
-            staticClass: "item",
-            attrs: { item: item },
-            on: {
-              reloadTodos: function($event) {
-                return _vm.getTodos()
+    [
+      _c("add-item-form", {
+        on: {
+          reloadTodos: function($event) {
+            return _vm.getTodos()
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.items, function(item, index) {
+        return _c(
+          "div",
+          { key: index },
+          [
+            _c("list-item", {
+              staticClass: "item",
+              attrs: { item: item },
+              on: {
+                reloadTodos: function($event) {
+                  return _vm.getTodos()
+                }
               }
-            }
-          })
-        ],
-        1
-      )
-    }),
-    0
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []

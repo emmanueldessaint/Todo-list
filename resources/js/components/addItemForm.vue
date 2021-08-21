@@ -1,6 +1,6 @@
 <template>
     <div class="addItem">
-        <input type="text" class="input" placeholder="Add Todo" v-model="item.name">
+        <input type="text" class="input" placeholder="Ajouter une tache" v-model="item.name">
         <button class="addButton">
             <font-awesome-icon
             icon="plus"
@@ -25,10 +25,13 @@ export default {
             if(this.item.name !== '') {
                 axios.post('api/todo/store', {
                     todo: this.item.name
+                    
                 }).then(response => {
                     if(response.status >= 200 && response.status < 300) {
                         this.item.name = null
                     }
+                    this.$emit('reloadTodos')
+                   
                 })
             }
         }

@@ -1,9 +1,11 @@
 <template>
     <div>
+        <add-item-form v-on:reloadTodos="getTodos()"/>
         <div v-for="(item, index) in items" :key="index">
             <list-item
             :item="item"           
             v-on:reloadTodos="getTodos()"
+            
             class="item"
             />
         </div>
@@ -12,10 +14,12 @@
 
 <script>
 import listItem from './listItem'
+import addItemForm from './addItemForm'
 
 export default {
     components: {
-        listItem
+        listItem,
+        addItemForm
         
     },
     data: function() {

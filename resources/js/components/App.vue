@@ -2,7 +2,7 @@
    <div>
        <h1 style="margin-top:200px;text-align:center">Todo List</h1>
        <div class="todoListContainer">
-           <add-item-form />
+           <!-- <add-item-form /> -->
            <list-view />
        </div>
    </div>
@@ -18,6 +18,7 @@
             addItemForm,
             listView
         }
+        
     }
 </script>
 <style scoped>
